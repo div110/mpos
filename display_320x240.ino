@@ -1,3 +1,12 @@
+//D7 - Orange
+//D6 - Green
+//D5 - Blue
+//D4 - Brown
+//D3 - Yellow
+
+//GND - White
+//VCC - Purple
+
 #include <SPI.h>
 #include "Ucglib.h"
 
