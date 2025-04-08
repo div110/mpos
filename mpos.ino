@@ -10,7 +10,7 @@
   //CLK - D9
   //DT - D8
   //SW - D2
-
+//WILL need to REDO
 
 #include <SPI.h>
 #include "Ucglib.h"
