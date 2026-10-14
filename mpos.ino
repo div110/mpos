@@ -26,7 +26,7 @@ Ucglib_ILI9341_18x240x320_SWSPI ucg(/*sclk=*/ 7, /*data=*/ 6, /*cd=*/ 5 , /*cs=*
 #include "Arduino.h"
 #include "DFRobotDFPlayerMini.h"
 #include <SoftwareSerial.h>
-SoftwareSerial softSerial(/*rx =*/12, /*tx =*/11); //fckin bullshit aka i messed up order
+SoftwareSerial softSerial(/*rx =*/12, /*tx =*/11); 
 #define FPSerial softSerial
 
 DFRobotDFPlayerMini myDFPlayer;
@@ -80,7 +80,7 @@ void setup() {
 void loop() {
   while(digitalRead(clk)==true&&digitalRead(dt)==true&&digitalRead(sw)==true){
   
-  delay(2); //netusim proc, ale funguje to s nim liip :///
+  delay(2); 
   if(digitalRead(clk)==true&&digitalRead(dt)==false){
 
     Serial.println("proti smeru");
@@ -88,12 +88,11 @@ void loop() {
     Serial.println(pos);
 
     if(pos == 14 || pos == 13){
-      //VRACENI FRAMU
+      //FRAME RESET
       ucg.setColor(100,100,100);
       ucg.drawFrame(1, 202, 239, 12);
 
-      //SMAZA FRAMU IKON
-      //SMAZANI FRAMU IKON:
+      //DELETE ICON FRAME
       ucg.setColor(0,0,0);
       ucg.drawFrame(87, 252, 47, 47);
       ucg.drawFrame(177, 252, 47, 47);
@@ -113,7 +112,7 @@ void loop() {
 
       Serial.println("mimo");
       if(pos==-1){
-        //SMAZANI STARE IKONY
+        //DELETE OLD ICON
         ucg.setColor(0,0,0);
         ucg.drawFrame(14, 260, 55, 30);
         ucg.setColor(0,0,0);
@@ -122,43 +121,38 @@ void loop() {
 
 
 
-        //NOVA IKONA
+        //NEW ICON
         ucg.setColor(100,100,100);
         ucg.drawFrame(177, 252, 47, 47);
         
       }
       else if(pos==-2){
-        //SMAZANI STARE IKONY
+        //DELETE OLD ICON
         ucg.setColor(0,0,0);
         ucg.drawFrame(177, 252, 47, 47);
         ucg.setColor(0,0,0);
         ucg.drawFrame(87, 252, 47, 47);
-        //DALSI IKONA
+        //NEXT ICON
         ucg.setColor(100,100,100);
         ucg.drawFrame(142, 252, 27, 47);
       }
       else if(pos==-3){
-        //SMAZANI STARE IKONY
         ucg.setColor(0,0,0);
         ucg.drawFrame(142, 252, 27, 47);
         ucg.setColor(0,0,0);
         ucg.drawFrame(14, 260, 55, 30);
 
-
-
-        //DALSI IKONA
         ucg.setColor(100,100,100);
         ucg.drawFrame(87, 252, 47, 47);
-
-
+        
       }
       else{
-        //SMAZANI STARE IKONY
+
         ucg.setColor(0,0,0);
         ucg.drawFrame(87, 252, 47, 47);
         ucg.setColor(0,0,0);
         ucg.drawFrame(177, 252, 47, 47);
-        //NOVA IKONA
+
         ucg.setColor(100,100,100);
         ucg.drawFrame(14, 260, 55, 30);
         pos = 14;
@@ -167,17 +161,16 @@ void loop() {
     }
   else if(digitalRead(clk)==false&&digitalRead(dt)==true){
     
-    Serial.println("po smeru");
+    //Serial.println("po smeru");
     pos = pos+1;
     Serial.println(pos);
 
 
     if(pos == 0||pos ==1){
-      //VRACENI FRAMU
+
       ucg.setColor(100,100,100);
       ucg.drawFrame(1, 20, 239, 12);
 
-      //SMAZANI FRAMU IKON:
       ucg.setColor(0,0,0);
       ucg.drawFrame(87, 252, 47, 47);
       ucg.drawFrame(177, 252, 47, 47);
@@ -199,32 +192,28 @@ void loop() {
 
       Serial.println("mimo");
       if(pos ==15){
-        //SMAZANI STARE IKONY
+
         ucg.setColor(0,0,0);
         ucg.drawFrame(14, 260, 55, 30);
         ucg.setColor(0,0,0);
         ucg.drawFrame(142, 252, 27, 47);
 
-
-
-
-        //NOVA IKONA
         ucg.setColor(100,100,100);
         ucg.drawFrame(177, 252, 47, 47);
         
       }
       else if(pos == 16){
-        //SMAZANI STARE IKONY
+
         ucg.setColor(0,0,0);
         ucg.drawFrame(177, 252, 47, 47);
         ucg.setColor(0,0,0);
         ucg.drawFrame(87, 252, 47, 47);
-        //DALSI IKONA
+
         ucg.setColor(100,100,100);
         ucg.drawFrame(142, 252, 27, 47);
       }
       else if(pos == 17){
-        //SMAZANI STARE IKONY
+
         ucg.setColor(0,0,0);
         ucg.drawFrame(142, 252, 27, 47);
         ucg.setColor(0,0,0);
@@ -239,13 +228,13 @@ void loop() {
 
       }
       else{
-        //SMAZANI STARE IKONY (VSECH)
+        //DELETE ALL OLD ICONS
         ucg.setColor(0,0,0);
         ucg.drawFrame(87, 252, 47, 47);
         ucg.setColor(0,0,0);
         ucg.drawFrame(177, 252, 47, 47);
         
-        //NOVA IKONA
+        //NEW ICON
         ucg.setColor(100,100,100);
         ucg.drawFrame(14, 260, 55, 30);
         pos = 0;
@@ -254,7 +243,7 @@ void loop() {
     }
   //delay(30);
   if(digitalRead(sw)==LOW){
-    Serial.println("tlacitkoo");
+    //Serial.println("tlacitkoo");
     myDFPlayer.next();
     //myDFPlayer.randomAll();
   }
@@ -382,7 +371,7 @@ void logo(){
 void about(){
   ucg.clearScreen();
 
-  //HUSTARNA
+  //LOADING
   ucg.setColor(0,255,255);
   ucg.drawTriangle(105, 134, 135, 134, 120, 160);
   delay(100);
@@ -402,7 +391,7 @@ void about(){
   //INFO
   ucg.setColor(200,100,100);
   ucg.setPrintPos(50, 50);
-  ucg.print("netusim");
+  //ucg.print("netusim");
 }
   
 
